@@ -14,8 +14,6 @@ var stringifyJSON = function(obj) {
   //let rightbracket = "]"
   //let leftCurly = '{'
   //let rightCurly = '}'
-  //let stringifiedObj = {};
-  // helper func takes in obj and outputs '['+ obj +']'
   //if typeof obj = num / bool / 
     //return String(obj) // '' +
   //else if typeof obj = str
@@ -35,5 +33,26 @@ var stringifyJSON = function(obj) {
       //return leftCurly + rightCurly;
     
       // 'a': 'b' {'a' : 'b'}
-    
+    let leftBracket = '[';
+    let rightBracket = ']';
+    let leftCurly = '{';
+    let rightCurly = '}';
+    if (typeof obj === 'number' || typeof obj === 'boolean') {
+      return String(obj);
+    } else if (typeof obj === 'string') {
+      return '"' + obj + "'";
+    } else if (obj === null) {
+      return 'null';
+    } else if (Array.isArray(obj)) {
+      obj.forEach(function(element) {
+        leftBracket += stringifyJSON(element) + ',';
+      });
+      return leftBracket.slice(0, leftBracket.length-1) + rightBracket;
+    } else if (typeof obj === 'object') {
+      for (const key in obj) {
+        if(typeof obj[key] === 'function' || typeof obj[key] === 'undefined') {
+          
+        }
+      }
+    }
 };
