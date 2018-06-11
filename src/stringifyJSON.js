@@ -40,19 +40,28 @@ var stringifyJSON = function(obj) {
     if (typeof obj === 'number' || typeof obj === 'boolean') {
       return String(obj);
     } else if (typeof obj === 'string') {
-      return '"' + obj + "'";
+      return '"' + obj + '"';
     } else if (obj === null) {
       return 'null';
     } else if (Array.isArray(obj)) {
       obj.forEach(function(element) {
         leftBracket += stringifyJSON(element) + ',';
       });
-      return leftBracket.slice(0, leftBracket.length-1) + rightBracket;
+      if (leftBracket[leftBracket.length-1] === ',') {
+        leftBracket = leftBracket.slice(0, leftBracket.length-1)
+      }
+      return leftBracket + rightBracket;
     } else if (typeof obj === 'object') {
       for (const key in obj) {
         if(typeof obj[key] === 'function' || typeof obj[key] === 'undefined') {
-          
+          leftCurly += '';
+        } else {
+          leftCurly += stringifyJSON(key) + ':' + stringifyJSON(obj[key]) + ',';
         }
       }
+      if (leftCurly[leftCurly.length-1] === ',') {
+        leftCurly = leftCurly.slice(0, leftCurly.length-1);
+      }
+      return leftCurly + rightCurly;
     }
 };
