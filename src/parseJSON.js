@@ -20,22 +20,38 @@ var parseJSON = function(json) {
   //set current char to json[1]
 //create var index to keep track of current char index
 
-//function parse num '9', 'false', 'str', 'null'
-
+//if(typeof +(currentchar) === number )
+  //function parse num '9', 'false', 'str', 'null'
+    //return (input)
+  
 //function parse bool
 
 //function parse str
 
 //function parse null
 
-//function parse obj
-
-//function parse arr
-
+//else if currentchar === '{'
+  //set current char to the next char
+  //invoke function parse obj on currentChar
+    //iterate thru string via for loop 
+      //if str[i] is '}'
+        //break
+      //else 
+        //call helper function that 
+//else if currentchar === '['
+  //create results arr []  
+  //function parse arr
+  //set current char to the next char
+  //invoke function parse obj on currentChar
+    //iterate thru string via for loop 
+      //if str[i] is ']'
+        //return results array
+      //else if str[i] !==  ',' (so we dont push stringed commas)
+          //push parseJSON of str[i] into result arr
 //if num
 //if bool
 //if str
 //if null
-
+  
 
 };
